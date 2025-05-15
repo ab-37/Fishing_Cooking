@@ -1,0 +1,176 @@
+@charset "utf-8";
+<!--
+body {
+	font-family:Verdana, Arial, Helvetica, sans-serif, "微軟正黑體";
+	background-color: #42413C;
+	margin: 0;
+	padding: 0;
+	color: #000;
+	font-size:11pt;
+}
+
+ul, ol, dl {
+	padding: 0;
+	margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;
+}
+
+h2{width:96%; border-bottom:solid 1px gray;}
+h3{color:#630; margin-bottom:6px;}
+
+a img {
+	border: none;
+}
+
+a:link {color: #42413C;	text-decoration: underline;}
+a:visited {color: #6E6C64; text-decoration: underline;}
+a:hover, a:active, a:focus {text-decoration: none;}
+
+.container {
+	background-color:#FFF;
+	width: 96%;
+	margin: 0 auto;
+}
+
+header {
+	background-image:url(images/header_back.jpg);
+	background-color: #dacead;
+	height:120px;
+}
+
+header p{
+	padding-top:22px;
+	padding-left:32px;
+	color:#ae1612;
+	font-size:2.0em;
+	font-weight:bold;
+}
+
+header img{vertical-align:middle; margin-right:30px;}
+
+
+.content {
+	padding: 10px 0;
+	width: 100%;
+	float: left;
+}
+
+.content2 {
+	padding: 10px 0;
+	width: 50%;
+	float: left;
+}
+
+.content ul, .content2 ul {
+	padding: 0 15px 15px 40px; 
+}
+
+.content ul li, .content2 ul li {margin-bottom:16px; line-height:150%;}
+
+fieldset{width:90%; margin-bottom:20px; padding:15px; border-radius:10px; text-align:left;}
+fieldset legend{color:#369;}
+fieldset label{width:100px; text-align:right; display:inline-block;}
+
+
+
+table{width:90%; font-size:0.85em; color:#333; border:0;}
+th{color:#366; text-align:left;}
+th, td{border-bottom:1px gray solid; padding:3px;}
+img{vertical-align:middle; border:0px;}
+hr{border:0; border-bottom:dotted 1px gray;}
+
+
+
+
+.comment{font-size:0.8em; color:#660;}
+.disp_none{display:none;}
+.dv_btn{width:90%; text-align:right;}
+.dv_right{text-align:right;}
+.dv_center{text-align:center;}
+.lable_blue{color:#366; font-weight:bold;}
+.lable_red{color:red; font-weight:bold;}
+.li_type_none {list-style-type:none;}
+.td_center{text-align:center;}
+#sec_hit ul li{ margin-bottom:6px; line-height:150%}
+.notes{font-size:0.9em; color:#333;}
+.pwd_cursor{cursor:pointer;}
+
+
+
+A.a-blue:link {COLOR: #369;	TEXT-DECORATION: none;}
+A.a-blue:visited {COLOR: #369; TEXT-DECORATION: none;}
+A.a-blue:hover {COLOR: #F60; TEXT-DECORATION: underline;}
+
+
+
+
+
+/* ~~ 頁尾 ~~ */
+#dv_footer{clear:both;}
+footer {
+	padding: 10px 0;
+	background-color: #c4b99a;
+	position: relative;
+	clear: both;
+	font-size:0.8em;
+	height:80px;
+}
+
+footer section{float:left;}
+
+/*HTML 5 支援 – 設定新的 HTML 5 標籤以顯示區塊並使瀏覽器能夠正確顯示標籤。 */
+header, section, footer, aside, article, figure {
+	display: block;
+}
+
+section{padding:15px;} 
+-->
+
+/*by kpc*/
+.g-recaptcha {
+	-moz-box-shadow:inset 0px 1px 0px 0px #a4e271;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #a4e271;
+	box-shadow:inset 0px 1px 0px 0px #a4e271;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #77a809));
+	background:-moz-linear-gradient(top, #89c403 5%, #77a809 100%);
+	background:-webkit-linear-gradient(top, #89c403 5%, #77a809 100%);
+	background:-o-linear-gradient(top, #89c403 5%, #77a809 100%);
+	background:-ms-linear-gradient(top, #89c403 5%, #77a809 100%);
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#89c403', endColorstr='#77a809',GradientType=0);
+	background-color:#89c403;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:10pt;
+	font-weight:bold;
+	padding:5px 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+}
+.g-recaptcha:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77a809), color-stop(1, #89c403));
+	background:-moz-linear-gradient(top, #77a809 5%, #89c403 100%);
+	background:-webkit-linear-gradient(top, #77a809 5%, #89c403 100%);
+	background:-o-linear-gradient(top, #77a809 5%, #89c403 100%);
+	background:-ms-linear-gradient(top, #77a809 5%, #89c403 100%);
+	background:linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77a809', endColorstr='#89c403',GradientType=0);
+	background-color:#77a809;
+}
+.g-recaptcha:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+/* for sso only */

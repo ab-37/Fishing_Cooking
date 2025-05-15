@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>淡江大學單一登入(SSO)</title>
+    
+    <!-- 本機 jQuery -->
+    <script src="js/jquery-2.2.4.min.js"></script>
+    
+    <!-- 本機 jQuery UI -->
+    <link href="css/jquery-ui.min.css" rel="stylesheet">
+    <script src="js/jquery-ui.min.js"></script>
+    
+    <!-- 本機 虛擬鍵盤 Widget -->
+    <link href="css/keyboard.css" rel="stylesheet">
+    <script src="js/jquery.keyboard.js"></script>
+    
+    <!-- 其他本機腳本（示意） -->
+    <script src="js/ismobile.js"></script>
+    <script src="js/pwcapslock.js"></script>
+    <script src="js/password-meter.js"></script>
+    
+    <!-- 自訂 CSS -->
+    <link href="css/sso.css" rel="stylesheet">
+
+    <style type="text/css">
+        /* —— 內嵌主要版型 —— */
+        .container { 
+            width:600px; 
+            margin:50px auto; 
+            background-color:white; 
+            padding:20px; 
+            border-radius:10px; 
+        }
+        h2 { 
+            color:#600; 
+            text-align:center; 
+            margin-bottom:20px; 
+        }
+        fieldset { 
+            border-radius:10px; 
+            background:#EBEBEB; 
+            padding:15px; 
+        }
+        fieldset legend { 
+            font-weight:bold; 
+            color:#369; 
+        }
+        fieldset p { 
+            margin:10px 0; 
+            text-align:center; 
+        }
+        fieldset label { 
+            width:80px; 
+            display:inline-block; 
+            text-align:right; 
+        }
+        input[type="text"], input[type="password"] { 
+            width:200px; 
+            padding:5px; 
+        }
+        .dv_center { 
+            text-align:center; 
+            margin-top:15px; 
+        }
+        input[type="submit"] { 
+            padding:8px 20px; 
+            background:#FC0; 
+            border:1px solid #C90; 
+            border-radius:5px; 
+            cursor:pointer; 
+        }
+        input[type="submit"]:hover { 
+            background:#EBEBEB; 
+            color:#600; 
+        }
+        #footer p { 
+            text-align:center; 
+            font-size:0.8em; 
+            margin-top:20px; 
+        }
+        /* —— 分頁區塊 —— */
+        #tab_opts { 
+            list-style:none; 
+            padding:0; 
+            margin:20px 0 0 0; 
+            overflow:hidden; 
+        }
+        #tab_opts li { 
+            float:left; 
+            padding:3px 10px; 
+            background:#FC0; 
+            border:1px solid #C90; 
+            border-radius:10px 10px 0 0; 
+            margin-right:2px; 
+            cursor:pointer; 
+        }
+        #tab_opts .down { 
+            background:#EBEBEB; 
+            color:#600; 
+        }
+        #dv_tab1, #dv_tab2, #dv_tab3 { 
+            display:none; 
+            background:#EBEBEB; 
+            padding:10px; 
+            border-radius:0 10px 10px 10px; 
+            font-size:0.9em; 
+        }
+    </style>
+
+    <script>
+        // 切換分頁
+        var lastTab = 0;
+        function showhide(i) {
+            [1, 2, 3].forEach(function(n) {
+                $('#li_tab' + n).removeClass('down');
+                $('#dv_tab' + n).hide();
+            });
+            if (lastTab !== i) {
+                $('#li_tab' + i).addClass('down');
+                $('#dv_tab' + i).show();
+                lastTab = i;
+            } else {
+                lastTab = 0;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>淡江大學單一登入(SSO)</h2>
+        
+        <!-- 模擬釣魚表單：action 指向本地 /login -->
+        <form id="eaiForm" method="post" action="/login">
+          <fieldset>
+            <legend>請輸入您的帳號及密碼</legend>
+            <p>
+              <label for="username">帳號：</label>
+              <input type="text" id="username" name="username" required pattern="^[a-zA-Z0-9_]{6,20}$" title="帳號需為6-20個字母、數字或底線">
+            </p>
+            <p>
+              <label for="password">密碼：</label>
+              <input type="password" id="password" name="password" required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" title="密碼需包含至少8個字符，且包含字母與數字">
+            </p>
+            <div class="dv_center">
+              <input type="submit" value="登入">
+            </div>
+          </fieldset>
+        </form>        
+
+        <!-- 功能說明分頁 -->
+        <ul id="tab_opts">
+            <li id="li_tab1" onclick="showhide(1)">說明 1</li>
+            <li id="li_tab2" onclick="showhide(2)">說明 2</li>
+            <li id="li_tab3" onclick="showhide(3)">說明 3</li>
+        </ul>
+        <div id="dv_tab1">
+            <p>分頁 1 內容範例。</p>
+        </div>
+        <div id="dv_tab2">
+            <p>分頁 2 內容範例。</p>
+        </div>
+        <div id="dv_tab3">
+            <p>分頁 3 內容範例。</p>
+        </div>
+
+        <div id="footer">
+            <p>淡江大學資訊處版權所有 &copy; 2025 Tamkang University</p>
+        </div>
+    </div>
+
+    <!-- 模擬虛擬鍵盤初始化（如需可啟用） -->
+    <script>
+        // 如果要使用虛擬鍵盤，請先確保 .keyboard() 方法可用
+        $(function() {
+            $('#username').keyboard({ openOn: null, stayOpen: true, layout: 'qwerty' });
+            $('#username-opener').click(function() {
+                var kb = $('#username').getkeyboard(); 
+                kb.toggle();
+            });
+            $('#password').keyboard({ openOn: null, stayOpen: true, layout: 'qwerty' });
+            $('#password-opener').click(function() {
+                var kb = $('#password').getkeyboard(); 
+                kb.toggle();
+            });
+        });
+    </script>
+<script src="js/login.js"></script>
+</body>
+</html>
